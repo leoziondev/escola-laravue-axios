@@ -14,7 +14,13 @@ const get = () => {
 }
 
 const post = () => {
-    console.log('post');
+    const data = {
+        title: 'My first Post Axios Request',
+        body: 'Lorem ipsum dollor sit amet',
+        userId: 1
+    }
+    axios.post('https://jsonplaceholder.typicode.com/posts', data)
+        .then((response) => renderOutput(response))
 }
 
 const put = () => {
