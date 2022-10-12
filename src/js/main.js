@@ -91,7 +91,24 @@ const errorHandling = () => {
 }
 
 const cancel = () => {
-    console.log('cancel');
+    const CancelToken = axios.CancelToken;
+    let cancel
+    const config = {
+        params: {
+            _limit: 5
+        },
+        cancelToken: new CancelToken(function executor(c) {
+            // Uma função executora recebe uma função de cancelamento como parametro
+            cancel = c;
+        })
+    }
+    axios.get('https://jsonplaceholder.typicode.com/posts', config)
+        .then((response) => renderOutput(response))
+        .catch((error) => {
+            console.log(error.message);
+        })
+    
+    cancel()
 }
 
 const clear = () => {
