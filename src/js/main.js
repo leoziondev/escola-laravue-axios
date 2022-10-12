@@ -4,7 +4,10 @@ const headersEl = document.getElementById('headers');
 const configEl = document.getElementById('config');
 
 const get = () => {
-    console.log('get');
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then((response) => {
+            renderOutput(response)
+        })
 }
 
 const post = () => {
