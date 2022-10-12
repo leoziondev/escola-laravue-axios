@@ -3,6 +3,15 @@ const dataEl = document.getElementById('data');
 const headersEl = document.getElementById('headers');
 const configEl = document.getElementById('config');
 
+const newAxios = axios.create({
+    baseURL: 'http://api.example.com',
+    headers: {
+        common: {
+            Authorization: 'Bearer Axios'
+        }
+    }
+})
+
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com'
 
 axios.interceptors.request.use(function (config) {
@@ -37,8 +46,9 @@ const get = () => {
             _limit: 5
         }
     }
+    // newAxios.get('/posts', config)
     axios.get('/posts', config)
-        .then((response) => renderOutput(response))
+    .then((response) => renderOutput(response))
 }
 
 const post = () => {
